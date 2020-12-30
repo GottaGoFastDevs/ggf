@@ -1,3 +1,4 @@
 import GGFProvider from "./provider";
+import { useForm } from "./form";
 
-export { GGFProvider };
+export { GGFProvider, useForm };
