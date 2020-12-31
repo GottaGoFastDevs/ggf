@@ -1,5 +1,5 @@
-import React, { createContext, useContext } from "react";
-import { parseGraphQLSchema } from "./graphql";
+import React, { createContext, useContext, useMemo } from "react";
+import { parseDocument } from "./graphql";
 
 const GGFContext = React.createContext();
 
@@ -7,10 +7,15 @@ function useGGFContext() {
   return useContext(GGFContext);
 }
 
-function GGFProvider({ children, graphQLSchema, validationSchema }) {
-  const value = {
-    schema: parseGraphQLSchema(graphQLSchema),
-  };
+function GGFProvider({ children, graphQLDocument, validationSchema }) {
+  const value = useMemo(
+    () => ({
+      graphQLDocument,
+      validationSchema,
+      schema: parseDocument(graphQLDocument),
+    }),
+    [graphQLDocument, validationSchema]
+  );
 
   return <GGFContext.Provider value={value}>{children}</GGFContext.Provider>;
 }

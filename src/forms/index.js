@@ -7,8 +7,8 @@ function useForm({ name }) {
 
   const fields = {};
 
-  for (const [key, field] of Object.entries(schema[name])) {
-    fields[key] = <TextField label={key} name={key} />;
+  for (const object of schema) {
+    fields[object.name] = <TextField label={key} name={key} />;
   }
 
   return { fields };

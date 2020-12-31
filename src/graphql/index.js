@@ -1,0 +1,1 @@
+import { parseDocument } from "./document";
