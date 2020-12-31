@@ -1,5 +1,5 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
+import { DefaultInput } from "components";
 import { useGGFContext } from "./provider";
 
 function useForm({ name }) {
@@ -8,7 +8,7 @@ function useForm({ name }) {
   const fields = {};
 
   for (const object of schema) {
-    fields[object.name] = <TextField label={key} name={key} />;
+    fields[object.name] = <DefaultInput label={key} name={key} />;
   }
 
   return { fields };
