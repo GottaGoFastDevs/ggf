@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.1.4",
     "@emotion/styled": "^11.0.0",
-    "@ggf/ggf": "file:../ggf",
+    "@ggf/ggf": "file:../",
     "@material-ui/core": "^5.0.0-alpha.20",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
