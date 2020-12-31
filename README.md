@@ -34,3 +34,21 @@ function App() {
   );
 }
 ```
+
+### Create a form
+
+```jsx
+import { useForm } from "@ggf/ggf";
+
+function Form() {
+  const { fields } = useForm({ name: "Planet" });
+
+  return (
+    <>
+      {fields.name}
+      
+      <button type="submit">Submit</button>
+    </>
+  )
+}
+```
