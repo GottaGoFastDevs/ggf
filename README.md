@@ -49,6 +49,6 @@ function Form() {
       
       <button type="submit">Submit</button>
     </>
-  )
+  );
 }
 ```
