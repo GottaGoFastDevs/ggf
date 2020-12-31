@@ -19,12 +19,12 @@ const theme = createMuiTheme({
   },
 });
 
-const graphQLSchema = loader("./schema.gql");
+const graphQLDocument = loader("./document.graphql");
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GGFProvider graphQLSchema={graphQLSchema}>
+      <GGFProvider graphQLDocument={graphQLDocument}>
         <CssBaseline />
 
         <App />
