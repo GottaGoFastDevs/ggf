@@ -45,14 +45,8 @@ function App() {
 import { useForm } from "@ggf/ggf";
 
 function Form() {
-  const { fields } = useForm({ name: "Planet" });
+  const { form } = useForm({ name: "Planet" });
 
-  return (
-    <>
-      {fields.name}
-      
-      <button type="submit">Submit</button>
-    </>
-  );
+  return form;
 }
 ```

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DefaultInput } from "./components";
+import { DefaultInput, DefaultForm } from "./components";
 import { useGGFContext } from "../provider";
 import { validate } from "../validation";
 
@@ -61,6 +61,7 @@ function useForm({ name }) {
 
     fields[field.name] = (
       <DefaultInput
+        key={field.name}
         label={getFieldLabel(object, field, translate)}
         type={getFieldType(field)}
         name={field.name}
@@ -78,7 +79,9 @@ function useForm({ name }) {
     setDirty(true);
   };
 
-  return { fields, errors, handleSubmit };
+  const form = <DefaultForm fields={fields} onSubmit={handleSubmit} />;
+
+  return { fields, errors, handleSubmit, form };
 }
 
 export default useForm;
