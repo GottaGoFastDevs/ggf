@@ -1,8 +1,8 @@
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
 import { useForm } from "@ggf/ggf";
 
 function App() {
-  const { fields } = useForm({ name: "User" });
+  const { fields, handleSubmit } = useForm({ name: "User" });
 
   return (
     <Container>
@@ -10,10 +10,16 @@ function App() {
         Update your profile
       </Typography>
 
-      {fields.email}
-      {fields.firstName}
-      {fields.lastName}
-      {fields.age}
+      <form noValidate onSubmit={handleSubmit}>
+        {fields.email}
+        {fields.firstName}
+        {fields.lastName}
+        {fields.age}
+
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 }

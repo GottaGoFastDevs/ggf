@@ -32,11 +32,14 @@ function useForm({ name }) {
   const struct = structs[name];
 
   const [values, setValues] = useState(getInitialValues(object));
+  const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    setErrors(validate(struct, values));
-  }, [values]);
+    if (dirty) {
+      setErrors(validate(struct, values));
+    }
+  }, [values, dirty]);
 
   const fields = {};
 
@@ -69,7 +72,13 @@ function useForm({ name }) {
     );
   }
 
-  return { fields, errors };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    setDirty(true);
+  };
+
+  return { fields, errors, handleSubmit };
 }
 
 export default useForm;
