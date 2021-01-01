@@ -7,7 +7,7 @@ function App() {
   return (
     <Container>
       <Typography variant="h3" gutterBottom>
-        Modifier votre profil
+        Update your profile
       </Typography>
 
       {fields.email}
