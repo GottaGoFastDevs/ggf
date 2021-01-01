@@ -1,5 +1,1 @@
-import DefaultInput from "components/DefaultInput";
-
-export {
-    DefaultInput
-}
+export { default as DefaultInput } from "./DefaultInput";

@@ -1,8 +1,7 @@
+import React from "react";
 import { TextField } from "@material-ui/core";
 
-function DefaultInput({label, name}) {
-    return (
-        <TextField label={label} name={name} />
-    )
+function DefaultInput({ label, name }) {
+  return <TextField label={label} name={name} />;
 }
-export default DefaultInput
+export default DefaultInput;
