@@ -10,5 +10,9 @@
   "User.lastName": {
     "defaultMessage": "Last name",
     "description": "The user's last name."
+  },
+  "User.age": {
+    "defaultMessage": "Age",
+    "description": "The user's age." 
   }
 }

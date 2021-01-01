@@ -1,4 +1,5 @@
 {
+  "User.age": "Age",
   "User.email": "Email address",
   "User.firstName": "First name",
   "User.lastName": "Last name"

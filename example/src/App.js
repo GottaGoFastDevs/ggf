@@ -13,6 +13,7 @@ function App() {
       {fields.email}
       {fields.firstName}
       {fields.lastName}
+      {fields.age}
     </Container>
   );
 }

@@ -16,7 +16,15 @@ function useForm({ name }) {
 
     const label = translate(labelDescriptor);
 
-    fields[field.name] = <DefaultInput label={label} name={field.name} />;
+    let type = "text";
+
+    if (field.type === "Int" || field.type === "Float") {
+      type = "number";
+    }
+
+    fields[field.name] = (
+      <DefaultInput label={label} name={field.name} type={type} />
+    );
   }
 
   return { fields };
