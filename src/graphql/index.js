@@ -1,1 +1,1 @@
-export { parseDocument } from "./document";
+export { default as parseDocument } from "./parseDocument";

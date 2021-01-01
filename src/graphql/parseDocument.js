@@ -1,3 +1,17 @@
+function parseType(type) {
+  if (type.kind === "NonNullType") {
+    return {
+      ...parseType(type.type),
+      nullable: false,
+    };
+  }
+
+  return {
+    type: type.name.value,
+    nullable: true,
+  };
+}
+
 function parseDocument(document) {
   const schema = {};
 
@@ -10,7 +24,7 @@ function parseDocument(document) {
     for (const field of definition.fields) {
       object.fields[field.name.value] = {
         name: field.name.value,
-        type: field.type.name.value,
+        ...parseType(field.type),
       };
     }
 
@@ -20,4 +34,4 @@ function parseDocument(document) {
   return schema;
 }
 
-export { parseDocument };
+export default parseDocument;

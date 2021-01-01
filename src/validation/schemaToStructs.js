@@ -1,23 +1,31 @@
 import * as s from "superstruct";
 
 function fieldToType(field) {
+  console.debug("field", field);
+
+  let type = s.any();
+
   if (field.type === "String") {
-    return s.string();
+    type = s.string();
+  } else if (field.type === "Int") {
+    type = s.coerce(s.integer(), s.string(), (value) =>
+      value === null ? null : Number(value)
+    );
+  } else if (field.type === "Float") {
+    type = s.coerce(s.number(), s.string(), (value) =>
+      value === null ? null : Number(value)
+    );
+  } else if (field.type === "Boolean") {
+    type = s.boolean();
   }
 
-  if (field.type === "Int") {
-    return s.integer();
+  if (field.nullable) {
+    console.debug("This field is nullable.");
+
+    type = s.nullable(type);
   }
 
-  if (field.type === "Float") {
-    return s.number();
-  }
-
-  if (field.type === "Boolean") {
-    return s.boolean();
-  }
-
-  return s.any();
+  return type;
 }
 
 function objectToStruct(object) {
