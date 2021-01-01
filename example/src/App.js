@@ -4,8 +4,6 @@ import { useForm } from "@ggf/ggf";
 function App() {
   const { fields } = useForm({ name: "User" });
 
-  console.log(fields);
-
   return (
     <Container>
       <Typography variant="h3" gutterBottom>

@@ -1,0 +1,14 @@
+{
+  "User.email": {
+    "defaultMessage": "Email address",
+    "description": "The user's email address."
+  },
+  "User.firstName": {
+    "defaultMessage": "First name",
+    "description": "The user's first name."
+  },
+  "User.lastName": {
+    "defaultMessage": "Last name",
+    "description": "The user's last name."
+  }
+}

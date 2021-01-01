@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { loader } from "graphql.macro";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
+import { createIntl, createIntlCache } from "react-intl";
+import messages from "./compiled-lang/en.json";
 import { GGFProvider } from "@ggf/ggf";
 
 const theme = createMuiTheme({
@@ -21,10 +23,24 @@ const theme = createMuiTheme({
 
 const graphQLDocument = loader("./document.graphql");
 
+const cache = createIntlCache();
+
+const intl = createIntl(
+  {
+    locale: "en",
+    messages,
+  },
+  cache
+);
+
+function translate({ id }) {
+  return intl.formatMessage({ id });
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GGFProvider graphQLDocument={graphQLDocument}>
+      <GGFProvider graphQLDocument={graphQLDocument} translate={translate}>
         <CssBaseline />
 
         <App />
@@ -34,7 +50,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

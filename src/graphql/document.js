@@ -2,16 +2,19 @@ function parseDocument(document) {
   const schema = {};
 
   for (const definition of document.definitions) {
-    const object = {};
+    const object = {
+      name: definition.name.value,
+      fields: {},
+    };
 
     for (const field of definition.fields) {
-      object[field.name.value] = {
+      object.fields[field.name.value] = {
         name: field.name.value,
         type: field.type.name.value,
       };
     }
 
-    schema[definition.name.value] = object;
+    schema[object.name] = object;
   }
 
   return schema;
