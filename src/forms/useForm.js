@@ -31,7 +31,7 @@ function useForm({ name, afterSubmit, initialData }) {
   const object = schema[name];
   const struct = structs[name];
 
-  const [values, setValues] = useState(intialData ?? getInitialValues(object));
+  const [values, setValues] = useState(initialData ?? getInitialValues(object));
   const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState({});
 
