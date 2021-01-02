@@ -26,12 +26,12 @@ function getFieldType(field) {
   return "text";
 }
 
-function useForm({ name, afterSubmit }) {
+function useForm({ name, afterSubmit, initialData }) {
   const { schema, translate, structs } = useGGFContext();
   const object = schema[name];
   const struct = structs[name];
 
-  const [values, setValues] = useState(getInitialValues(object));
+  const [values, setValues] = useState(intialData ?? getInitialValues(object));
   const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState({});
 
