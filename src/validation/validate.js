@@ -4,7 +4,7 @@ function validate(struct, values) {
   try {
     assert(create(values, struct), struct);
 
-    return {};
+    return null;
   } catch (error) {
     const errors = {};
 

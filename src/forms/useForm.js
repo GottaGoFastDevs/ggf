@@ -26,7 +26,7 @@ function getFieldType(field) {
   return "text";
 }
 
-function useForm({ name }) {
+function useForm({ name, afterSubmit }) {
   const { schema, translate, structs } = useGGFContext();
   const object = schema[name];
   const struct = structs[name];
@@ -35,11 +35,19 @@ function useForm({ name }) {
   const [dirty, setDirty] = useState(false);
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
+  const runValidation = () => {
     if (dirty) {
-      setErrors(validate(struct, values));
+      const errors = validate(struct, values);
+
+      if (errors === null) {
+        setErrors({});
+      } else {
+        setErrors(errors);
+      }
     }
-  }, [values, dirty]);
+  };
+
+  useEffect(runValidation, [values, dirty]);
 
   const fields = {};
 
@@ -77,6 +85,12 @@ function useForm({ name }) {
     event.preventDefault();
 
     setDirty(true);
+
+    if (validate(struct, values) === null) {
+      if (afterSubmit) {
+        afterSubmit(values);
+      }
+    }
   };
 
   const form = <DefaultForm fields={fields} onSubmit={handleSubmit} />;
