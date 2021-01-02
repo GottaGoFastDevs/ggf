@@ -10,7 +10,13 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const { form } = useForm({ name: "User" });
+  const { form } = useForm({
+    name: "User",
+
+    afterSubmit({ firstName, lastName }) {
+      alert(`Hello ${firstName} ${lastName}!`);
+    },
+  });
 
   return (
     <Container maxWidth="md" className={classes.container}>
