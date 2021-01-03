@@ -47,7 +47,7 @@ import { useForm } from "@ggf/ggf";
 function Form() {
   const { form } = useForm({ name: "Planet" });
 
-  return form;
+  return <form />;
 }
 ```
 
