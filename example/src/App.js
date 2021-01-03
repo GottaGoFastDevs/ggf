@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
 import { useForm } from "@ggf/ggf";
 
 const useStyles = makeStyles((theme) => ({
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const { form } = useForm({
+  const { handleSubmit, fields } = useForm({
     name: "User",
 
     afterSubmit({ firstName, lastName }) {
@@ -24,7 +24,14 @@ function App() {
         Update your profile
       </Typography>
 
-      {form}
+      <form noValidate onSubmit={handleSubmit}>
+        <fields.email label="Email address" />
+        <fields.firstName label="First name" />
+        <fields.lastName label="Last name" />
+        <fields.age label="Age" />
+
+        <Button variant="contained">Submit</Button>
+      </form>
     </Container>
   );
 }

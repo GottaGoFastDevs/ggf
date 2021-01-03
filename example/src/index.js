@@ -37,7 +37,7 @@ function translate({ id }) {
   return intl.formatMessage({ id });
 }
 
-ReactDOM.render(
+ReactDOM.unstable_createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GGFProvider graphQLDocument={graphQLDocument} translate={translate}>
@@ -46,8 +46,7 @@ ReactDOM.render(
         <App />
       </GGFProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 
 reportWebVitals();
