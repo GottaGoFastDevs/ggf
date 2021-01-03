@@ -41,7 +41,7 @@ function cloneFormState(formState) {
   return { ...formState };
 }
 
-const newField = (useFormState, formContextRef, field) => ({
+const newField = (useFormState, formContextRef, translate, field) => ({
   helperText,
   ...props
 }) => {
@@ -69,6 +69,7 @@ const newField = (useFormState, formContextRef, field) => ({
       type={getFieldType(field)}
       onChange={handleChange}
       value={formState.data[field.name] || ""}
+      label={translate({ type: "label", id: `${formContext.object.name}.${field.name}` })}
       error={hasError}
       helperText={hasError ? formState.errors[field.name].message : helperText}
       {...props}
@@ -76,7 +77,7 @@ const newField = (useFormState, formContextRef, field) => ({
   );
 };
 
-function createFields(formContextRef, formStateRefSource, object) {
+function createFields(formContextRef, formStateRefSource, translate, object) {
   const useFormState = () => {
     return useMutableSource(
       formStateRefSource,
@@ -88,7 +89,7 @@ function createFields(formContextRef, formStateRefSource, object) {
   const fields = {};
 
   for (const field of Object.values(object.fields)) {
-    fields[field.name] = newField(useFormState, formContextRef, field);
+    fields[field.name] = newField(useFormState, formContextRef, translate, field);
   }
 
   return fields;
@@ -163,7 +164,7 @@ function useFormStateRefSource(formStateRef) {
 }
 
 function useForm({ name, afterSubmit, initialData }) {
-  const { schema } = useGGFContext();
+  const { schema, translate } = useGGFContext();
   const object = schema[name];
 
   // Creation of a reference that contains the state of the form. This state is passed to all the fields of the form.
@@ -175,7 +176,7 @@ function useForm({ name, afterSubmit, initialData }) {
 
   // Creation of the form fields. They are created only once to avoid that React rebuilds them at each rendering.
   const Fields = useMemo(
-    () => createFields(formContextRef, formStateRefSource, object),
+    () => createFields(formContextRef, formStateRefSource, translate, object),
     [formStateRefSource, object]
   );
 
