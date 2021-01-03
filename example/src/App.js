@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const classes = useStyles();
-  const { handleSubmit, fields } = useForm({
+  const { Form } = useForm({
     name: "User",
 
     afterSubmit({ firstName, lastName }) {
@@ -24,14 +24,7 @@ function App() {
         Update your profile
       </Typography>
 
-      <form noValidate onSubmit={handleSubmit}>
-        <fields.email label="Email address" />
-        <fields.firstName label="First name" />
-        <fields.lastName label="Last name" />
-        <fields.age label="Age" />
-
-        <Button variant="contained">Submit</Button>
-      </form>
+      <Form />
     </Container>
   );
 }

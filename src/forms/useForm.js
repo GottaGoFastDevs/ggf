@@ -8,7 +8,6 @@ import React, {
 } from "react";
 import { DefaultInput, DefaultForm } from "./components";
 import { useGGFContext } from "../provider";
-import { validate } from "../validation";
 
 let numberOfSubscriptions = 0;
 
@@ -96,9 +95,9 @@ function createFields(formContextRef, formStateRefSource, object) {
 }
 
 class FormContext {
-  constructor(formStateRef, struct) {
+  constructor(formStateRef, object) {
     this.formStateRef = formStateRef;
-    this.struct = struct;
+    this.object = object;
   }
 
   get state() {
@@ -116,10 +115,16 @@ class FormContext {
       return;
     }
 
-    const errors = validate(this.struct, this.state.data);
-    this.state.errors = errors ?? {};
+    try {
+      this.object.validate(this.state.data);
+      this.state.errors = {};
 
-    return errors === null;
+      return true;
+    } catch (errors) {
+      this.state.errors = errors;
+      
+      return false;
+    }
   }
 }
 
@@ -144,10 +149,8 @@ function useFormStateRef(initialData, object) {
   return useRef(formState);
 }
 
-function useFormContextRef(formStateRef, struct) {
-  const formContext = useMemo(() => new FormContext(formStateRef, struct), [
-    struct,
-  ]);
+function useFormContextRef(formStateRef, object) {
+  const formContext = useMemo(() => new FormContext(formStateRef, object), []);
 
   return useRef(formContext);
 }
@@ -160,19 +163,18 @@ function useFormStateRefSource(formStateRef) {
 }
 
 function useForm({ name, afterSubmit, initialData }) {
-  const { schema, structs } = useGGFContext();
+  const { schema } = useGGFContext();
   const object = schema[name];
-  const struct = structs[name];
 
   // Creation of a reference that contains the state of the form. This state is passed to all the fields of the form.
   const formStateRef = useFormStateRef(initialData, object);
-  const formContextRef = useFormContextRef(formStateRef, struct);
+  const formContextRef = useFormContextRef(formStateRef, object);
 
   // This mutable source is used to be able to trigger a rendering on the concerned fields.
   const formStateRefSource = useFormStateRefSource(formStateRef);
 
   // Creation of the form fields. They are created only once to avoid that React rebuilds them at each rendering.
-  const fields = useMemo(
+  const Fields = useMemo(
     () => createFields(formContextRef, formStateRefSource, object),
     [formStateRefSource, object]
   );
@@ -195,18 +197,18 @@ function useForm({ name, afterSubmit, initialData }) {
   );
 
   // The form is memoized for the same reason as the fields.
-  const form = useMemo(
+  const Form = useMemo(
     () => (props) => (
-      <DefaultForm fields={fields} onSubmit={handleSubmit} {...props} />
+      <DefaultForm Fields={Fields} onSubmit={handleSubmit} {...props} />
     ),
-    [fields]
+    [Fields]
   );
 
   // Expose useful objects to developers
 
   const { errors } = formStateRef.current;
 
-  return { fields, errors, handleSubmit, form };
+  return { Fields, errors, handleSubmit, Form };
 }
 
 export default useForm;

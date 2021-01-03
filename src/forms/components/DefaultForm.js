@@ -1,13 +1,11 @@
 import React from "react";
 import { Box, Button } from "@material-ui/core";
 
-function DefaultForm({ fields, onSubmit }) {
-  console.log("DefaultForm", fields, onSubmit);
-
+function DefaultForm({ Fields, onSubmit }) {
   return (
     <form noValidate onSubmit={onSubmit}>
-      {Object.values(fields).map((field, index) => (
-        <field key={index} />
+      {Object.values(Fields).map((Field, index) => (
+        <Field key={index} />
       ))}
 
       <Box sx={{ mt: 2 }} />
