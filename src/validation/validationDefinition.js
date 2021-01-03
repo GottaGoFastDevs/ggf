@@ -4,13 +4,14 @@ export class ValidationDefinion {
 		this.fields = fields;
 	}
 
-	validate(values) {
+	validate(values, translate) {
 		var definitionErrors = {};
 		for (const [ name, value ] of Object.entries(values)) {
 			try {
 				this.fields[name].validate(value);
 			} catch (fieldError) {
-				definitionErrors[name] = fieldError;
+				console.log(fieldError);
+				definitionErrors[name] = translate(fieldError);
 			}
 		}
 		if (Object.keys(definitionErrors).length !== 0) {
