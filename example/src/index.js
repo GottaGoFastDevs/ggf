@@ -8,6 +8,7 @@ import { CssBaseline } from "@material-ui/core";
 import { createIntl, createIntlCache } from "react-intl";
 import messages from "./compiled-lang/en.json";
 import { GGFProvider } from "@ggf/ggf";
+import validationSchema from "./validation.json";
 
 const theme = createMuiTheme({
   components: {
@@ -40,7 +41,11 @@ function translate({ id }) {
 ReactDOM.unstable_createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <GGFProvider graphQLDocument={graphQLDocument} translate={translate}>
+      <GGFProvider
+        graphQLDocument={graphQLDocument}
+        validationSchema={validationSchema}
+        translate={translate}
+      >
         <CssBaseline />
 
         <App />
