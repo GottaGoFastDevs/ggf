@@ -20,6 +20,33 @@ type Planet {
 }
 ```
 
+### Create validation rules document
+GottaGoFast needs a JSON document to know the validation rules of your data.
+
+The rules follow the following enforce rules : 
+#### Numeric
+- greaterThan
+- greaterThanOrEquals
+- lessThan
+- lessThenOrEquals
+- numberEquals
+- numberNotEquals
+- matches
+- notMatches
+- isOdd
+- isEven
+#### String
+
+```json
+{
+  "User": {
+    "Age": {
+      "greaterThan": 2
+    }
+  }
+}
+```
+
 ### Add a `GGFProvider`
 
 All GottaGoFast hooks and components need a `GGFProvider` in the parent tree to work.

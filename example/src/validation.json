@@ -1,7 +1,7 @@
 {
     "User": {
-        "email" : {
-            "longerThanOrEquals": 3
+        "age" : {
+            "greaterThan": 10
         }
     }
 }
