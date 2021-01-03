@@ -71,7 +71,7 @@ const newField = (useFormState, formContextRef, translate, field) => ({
       value={formState.data[field.name] || ""}
       label={translate({ type: "label", id: `${formContext.object.name}.${field.name}` })}
       error={hasError}
-      helperText={hasError ? formState.errors[field.name].message : helperText}
+      helperText={hasError ? formState.errors[field.name] : helperText}
       {...props}
     />
   );
