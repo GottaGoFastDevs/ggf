@@ -34,11 +34,21 @@ const intl = createIntl(
 	cache
 );
 
-function translate({ id, type }) {
+function translate({ id, type, value }) {
 	if (type === 'label') {
 		const fieldName = id.split('.')[1];
 		const words = fieldName.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
 		return words.charAt(0).toUpperCase() + words.slice(1);
+	}
+	if (type === 'error') {
+		switch (id) {
+			case 'null':
+				return 'Le champ ne doit pas être nul';
+			case 'greaterThan':
+				return 'Le nombre doit être plus grand que ' + value;
+			default:
+				return id;
+		}
 	}
 
 	return intl.formatMessage({ id });
