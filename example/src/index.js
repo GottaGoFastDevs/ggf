@@ -34,7 +34,16 @@ const intl = createIntl(
   cache
 );
 
-function translate({ id }) {
+function translate({ id, type }) {
+  if (type === "label") {
+    const fieldName = id.split(".")[1];
+    const words = fieldName.replace(
+      /([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g,
+      "$1 $2"
+    );
+    return words.charAt(0).toUpperCase() + words.slice(1);
+  }
+
   return intl.formatMessage({ id });
 }
 
