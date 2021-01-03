@@ -1,0 +1,7 @@
+{
+    "User": {
+        "email" : {
+            "longerThanOrEquals": 3
+        }
+    }
+}

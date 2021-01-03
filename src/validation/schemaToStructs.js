@@ -1,21 +1,37 @@
 import * as s from "superstruct";
 
+function getTypeFromField(field) {
+  return field.type
+}
+function isAString(field) {
+  return getTypeFromField(field) === "String"
+}
+function isAInt(field) {
+  return getTypeFromField(field) === "Int"
+}
+function isAFloat(field) {
+  return getTypeFromField(field) === "Float"
+}
+function isABoolean(field) {
+  return getTypeFromField(field) === "Boolean"
+}
+
 function fieldToType(field) {
   console.debug("field", field);
 
   let type = s.any();
 
-  if (field.type === "String") {
+  if (isAString(field)) {
     type = s.string();
-  } else if (field.type === "Int") {
+  } else if (isAInt(field)) {
     type = s.coerce(s.integer(), s.string(), (value) =>
       value === null ? null : Number(value)
     );
-  } else if (field.type === "Float") {
+  } else if (isAFloat(field)) {
     type = s.coerce(s.number(), s.string(), (value) =>
       value === null ? null : Number(value)
     );
-  } else if (field.type === "Boolean") {
+  } else if (isABoolean(field)) {
     type = s.boolean();
   }
 
