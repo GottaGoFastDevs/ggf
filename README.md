@@ -50,3 +50,29 @@ function Form() {
   return form;
 }
 ```
+
+### Use fields
+
+```jsx
+function Form() {
+  const { fields, handleSubmit } = useForm();
+
+  <form noValidate onSubmit={handleSubmit}>
+    <fields.firstName label="Prénom" />
+
+    <Button type="submit">Envoyer</Button>
+  </form>
+}  
+```
+
+### Use  handler
+```jsx
+function Form() {
+  const { fields: { firstName }, errors, handleSubmit } = useForm()
+
+  return (
+    <TextField onChange={firstname.handleChange} value={firstname.value} />
+    <Typography>{errors.firstName?.message}</Typography>
+  }
+}
+```
