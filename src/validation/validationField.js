@@ -34,7 +34,7 @@ export class ValidationField {
 			throw throwValidationError('null');
 		}
 		// Type
-		if (!isTheSameType(this.type, value)) {
+		if (value && !isTheSameType(this.type, value)) {
 			throw throwValidationError('type');
 		}
 		// Rules
