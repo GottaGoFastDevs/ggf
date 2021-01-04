@@ -23,19 +23,7 @@ type Planet {
 ### Create validation rules document
 GottaGoFast needs a JSON document to know the validation rules of your data.
 
-The rules follow the following enforce rules : 
-#### Numeric
-- greaterThan
-- greaterThanOrEquals
-- lessThan
-- lessThenOrEquals
-- numberEquals
-- numberNotEquals
-- matches
-- notMatches
-- isOdd
-- isEven
-#### String
+The rules follow the enforcing rules from Vest (https://ealush.com/vest/#/./enforce?id=list-of-enforce-rules)
 
 ```json
 {

@@ -12,7 +12,7 @@ function GGFProvider({ children, graphQLDocument, validationSchema, translate })
 	const value = useMemo(
 		() => {
 			const schemaWithoutValidation = parseDocument(graphQLDocument);
-			const schema = addValidationToSchema(validationSchema, schemaWithoutValidation);
+			const schema = addValidationToSchema(validationSchema, schemaWithoutValidation, translate);
 
 			return {
 				schema,

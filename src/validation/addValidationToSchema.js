@@ -11,7 +11,7 @@ function getValidationFieldRules(validationSchemaFile, definitionName, fieldName
 	return validationSchemaFile[definitionName][fieldName];
 }
 
-function addValidationToSchema(validationSchemaFile, schemaWithoutValidation) {
+function addValidationToSchema(validationSchemaFile, schemaWithoutValidation, translate) {
 	const schema = {};
 
 	for (const [ definitionName, definition ] of Object.entries(schemaWithoutValidation)) {
@@ -23,7 +23,7 @@ function addValidationToSchema(validationSchemaFile, schemaWithoutValidation) {
 			fields[fieldName] = new ValidationField(fieldBody, validationFieldRules);
 		}
 
-		schema[definitionName] = new ValidationDefinion(definitionName, fields);
+		schema[definitionName] = new ValidationDefinion(definitionName, fields, translate);
 	}
 
 	return schema;

@@ -1,10 +1,11 @@
 import { enforce } from 'vest';
 import { isTheSameType } from '.';
 
-function throwValidationError(id) {
+function throwValidationError(id, value) {
 	throw {
-		label: 'error',
-		id: id
+		type: 'error',
+		id: id,
+		value: value
 	};
 }
 export class ValidationField {
@@ -23,7 +24,7 @@ export class ValidationField {
 		try {
 			enforce(value)[ruleName](this.validationFieldRules[ruleName]);
 		} catch (e) {
-			throw throwValidationError('ruleName');
+			throw throwValidationError(ruleName, this.validationFieldRules[ruleName]);
 		}
 	}
 
@@ -38,7 +39,6 @@ export class ValidationField {
 		}
 		// Rules
 		for (const [ ruleName, ruleValue ] of Object.entries(this.validationFieldRules)) {
-			console.log(ruleName);
 			this.enforceRule(value, ruleName);
 		}
 	}

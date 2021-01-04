@@ -1,0 +1,8 @@
+{
+    "null": "Le champ ne doit pas être nul",
+    "type": "Le champ n'est pas du bon type",
+    "greaterThan": "La valeur doit être plus grande que ?",
+    "greaterThanOrEquals": "La valeur doit être égale ou plus grande que ?",
+    "lessThan": "La valeur doit être plus petite que ?",
+    "lessThanOrEquals": "La valeur doit être égale ou plus petite que ?"
+}
