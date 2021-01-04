@@ -1,30 +1,32 @@
-import { makeStyles } from "@material-ui/core/styles";
-import { Container, Typography } from "@material-ui/core";
+import { Container, Typography, Button } from "@material-ui/core";
 import { useForm } from "@ggf/ggf";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    paddingTop: theme.spacing(4),
-  },
-}));
-
 function App() {
-  const classes = useStyles();
-  const { Form } = useForm({
-    name: "User",
+  const {
+    Fields: { Email, FirstName, LastName, Age },
+    handleSubmit,
+  } = useForm();
 
-    afterSubmit({ firstName, lastName }) {
-      alert(`Hello ${firstName} ${lastName}!`);
-    },
-  });
+  const onSubmit = ({ firstName, lastName }) => {
+    alert(`Hello ${firstName} ${lastName}!`);
+  };
 
   return (
-    <Container maxWidth="md" className={classes.container}>
+    <Container maxWidth="md">
       <Typography variant="h2" gutterBottom>
         Update your profile
       </Typography>
 
-      <Form />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Email label="Email" />
+        <FirstName label="First Name" />
+        <LastName label="Last Name" />
+        <Age label="Age" />
+
+        <Button type="submit" variant="contained" sx={{ mt: 2 }}>
+          Submit
+        </Button>
+      </form>
     </Container>
   );
 }

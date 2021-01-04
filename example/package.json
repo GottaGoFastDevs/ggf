@@ -10,11 +10,8 @@
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
-    "graphql": "^15.4.0",
-    "graphql.macro": "^1.4.2",
     "react": "0.0.0-experimental-3310209d0",
     "react-dom": "0.0.0-experimental-3310209d0",
-    "react-intl": "^5.10.11",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },

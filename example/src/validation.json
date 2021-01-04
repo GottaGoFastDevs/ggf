@@ -1,7 +1,0 @@
-{
-    "User": {
-        "age" : {
-            "greaterThan": 10
-        }
-    }
-}

@@ -1,4 +1,1 @@
-import GGFProvider from "./provider";
-import { useForm } from "./forms";
-
-export { GGFProvider, useForm };
+export { default as useForm } from "./useForm";

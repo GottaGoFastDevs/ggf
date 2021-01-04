@@ -25,7 +25,6 @@
     "@babel/preset-react": "^7.12.10"
   },
   "dependencies": {
-    "superstruct": "^0.13.1",
     "vest": "^2.2.3"
   }
 }
