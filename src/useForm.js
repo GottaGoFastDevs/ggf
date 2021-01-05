@@ -7,7 +7,7 @@ import React, {
   unstable_useMutableSource as useMutableSource,
 } from "react";
 import { TextField } from "@material-ui/core";
-import { pickOnlySupportedRules, validateData } from "./rules"
+import { pickOnlySupportedRules, validateData } from "./rules";
 
 let numberOfSubscriptions = 0;
 
@@ -36,9 +36,9 @@ const newField = (useFormState, formContextRef, name) => ({
   const error = formState.errors ? formState.errors[name] : null;
 
   // Rules
-  formState.rules[name] = pickOnlySupportedRules(props)
+  formState.rules[name] = pickOnlySupportedRules(props);
   // Labels
-  formState.labels[name] = props.label
+  formState.labels[name] = props.label;
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -48,7 +48,7 @@ const newField = (useFormState, formContextRef, name) => ({
     }
 
     formState.data[name] = value;
-    
+
     formContext.validate();
     formContext.notifySubscribers();
   };
@@ -114,7 +114,7 @@ class FormContext {
       rules: this.state.rules,
       data: this.state.data,
       labels: this.state.labels,
-    })
+    });
     return this.state.errors == null;
   }
 
@@ -134,8 +134,8 @@ class FormState {
 
   constructor(initialData) {
     this.data = initialData;
-    this.rules = {}
-    this.labels = {}
+    this.rules = {};
+    this.labels = {};
   }
 }
 
