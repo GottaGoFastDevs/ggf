@@ -7,7 +7,7 @@ const cache = createIntlCache();
 const errorIntl = createIntl({
 	locale: 'fr',
 	defaultLocale: 'fr',
-	messages: errorMessages,
+	messages: errorMessages.fr,
 	cache
 });
 
@@ -15,7 +15,8 @@ function translate({ ruleName, ruleValue, fieldName, fieldValue, fieldLabel }) {
 	// const id = ruleName;
 	// console.log(errorIntl);
 	// return errorIntl.formatMessage({ id: 'required' });
-	return errorIntl.formatMessage({ id: 'required', ruleName, ruleValue, fieldName, fieldValue, fieldLabel });
+	console.log(fieldLabel);
+	return errorIntl.formatMessage({ id: ruleName }, { ruleName, ruleValue, fieldName, fieldValue, fieldLabel });
 }
 
 export default translate;

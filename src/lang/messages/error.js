@@ -1,10 +1,4 @@
 const errorMessages = {
-	// fr: [
-	// 	{
-	// 		id: 'required',
-	// 		defaultMessage: 'Le champ {fieldLabel} ne doit pas être vide'
-	// 	}
-	// ]
 	fr: {
 		required: 'Le champ {fieldLabel} ne doit pas être vide',
 		type: "Le champ {fieldLabel} n'est pas du bon type",

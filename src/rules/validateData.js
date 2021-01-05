@@ -21,7 +21,7 @@ function validateData({ rules, data, labels }) {
 					ruleValue,
 					fieldName,
 					fieldValue,
-					fieldLabel: labels[ruleName]
+					fieldLabel: labels[fieldName].toLowerCase()
 				};
 				enforce(fieldValue)[supportedVestRules[ruleName]](ruleValue);
 			}
