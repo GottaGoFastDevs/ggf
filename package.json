@@ -25,6 +25,7 @@
     "@babel/preset-react": "^7.12.10"
   },
   "dependencies": {
+    "react-intl": "^5.10.12",
     "vest": "^2.2.3"
   }
 }
