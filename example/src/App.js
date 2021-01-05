@@ -1,6 +1,13 @@
 import { Container, Typography, Button } from "@material-ui/core";
 import { useForm } from "@ggf/ggf";
 
+const numberFormat = (str) => {
+  let r = parseInt(str.replace(/[^\d]+/gi, ""), 10);
+  r = r ? r.toLocaleString("fr") : "";
+
+  return r;
+};
+
 function App() {
   const {
     Fields: { Email, FirstName, LastName, Age },
@@ -21,7 +28,7 @@ function App() {
         <Email label="Email" required />
         <FirstName label="First Name" />
         <LastName label="Last Name" />
-        <Age label="Age" min="10" />
+        <Age label="Age" numeric min="10" format={numberFormat} />
 
         <Button type="submit" variant="contained" sx={{ mt: 2 }}>
           Submit

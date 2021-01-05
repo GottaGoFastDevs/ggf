@@ -6,6 +6,7 @@ import React, {
   unstable_createMutableSource as createMutableSource,
   unstable_useMutableSource as useMutableSource,
 } from "react";
+import { Rifm } from "rifm";
 import { TextField } from "@material-ui/core";
 import { pickOnlySupportedRules, validateData } from "./rules";
 
@@ -27,22 +28,29 @@ function cloneFormState(formState) {
   return { ...formState };
 }
 
+function Field({ error, helperText, ...props }) {
+  return (
+    <TextField error={!!error} helperText={error ?? helperText} {...props} />
+  );
+}
+
 const newField = (useFormState, formContextRef, name) => ({
   helperText,
+  format,
   ...props
 }) => {
   const formState = useFormState();
   const formContext = formContextRef.current;
   const error = formState.errors ? formState.errors[name] : null;
 
+  const label = props.label ?? name;
+
   // Rules
   formState.rules[name] = pickOnlySupportedRules(props);
   // Labels
-  formState.labels[name] = props.label;
+  formState.labels[name] = label;
 
-  const handleChange = (event) => {
-    let value = event.target.value;
-
+  const handleChange = (value) => {
     if (value === "") {
       value = null;
     }
@@ -53,14 +61,32 @@ const newField = (useFormState, formContextRef, name) => ({
     formContext.notifySubscribers();
   };
 
+  const value = formState.data[name] || "";
+
+  if (format) {
+    return (
+      <Rifm onChange={handleChange} value={value} format={format}>
+        {({ onChange, value }) => (
+          <Field
+            onChange={onChange}
+            value={value}
+            name={name}
+            label={label}
+            error={error}
+            {...props}
+          />
+        )}
+      </Rifm>
+    );
+  }
+
   return (
-    <TextField
+    <Field
+      onChange={(event) => handleChange(event.target.value)}
+      value={value}
       name={name}
-      onChange={handleChange}
-      value={formState.data[name] || ""}
-      label={name}
-      error={!!error}
-      helperText={error ?? helperText}
+      label={label}
+      error={error}
       {...props}
     />
   );
