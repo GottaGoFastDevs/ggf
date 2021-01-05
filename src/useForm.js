@@ -35,7 +35,10 @@ const newField = (useFormState, formContextRef, name) => ({
   const formContext = formContextRef.current;
   const error = formState.errors ? formState.errors[name] : null;
 
+  // Rules
   formState.rules[name] = pickOnlySupportedRules(props)
+  // Labels
+  formState.labels[name] = props.label
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -107,7 +110,11 @@ class FormContext {
     }
 
     // Rules
-    this.state.errors = validateData(this.state.data, this.state.rules)
+    this.state.errors = validateData({
+      rules: this.state.rules,
+      data: this.state.data,
+      labels: this.state.labels,
+    })
     return this.state.errors == null;
   }
 
@@ -128,6 +135,7 @@ class FormState {
   constructor(initialData) {
     this.data = initialData;
     this.rules = {}
+    this.labels = {}
   }
 }
 

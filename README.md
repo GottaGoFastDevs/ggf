@@ -16,19 +16,29 @@ npm install --save @ggf/ggf
 import { useForm } from "@ggf/ggf";
 
 function Form() {
-  const { Fields, handleSubmit } = useForm();
+  const { Fields: { Email, FirstName, LastName, Age }, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    // ...
-  }
+	const onSubmit = ({ firstName, lastName }) => {
+		alert(`Hello ${firstName} ${lastName}!`);
+	};
 
-  return (
-    <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Fields.FirstName label="First Name" />
-      <Fields.LastName label="Last Name" />
+	return (
+		<Container maxWidth="md">
+			<Typography variant="h2" gutterBottom>
+				Update your profile
+			</Typography>
 
-      <Button type="submit">Submit</Button>
-    </form>
-  );
+			<form noValidate onSubmit={handleSubmit(onSubmit)}>
+				<Email label="Email" required />
+				<FirstName label="First Name" />
+				<LastName label="Last Name" />
+				<Age label="Age" min="10" />
+
+				<Button type="submit" variant="contained" sx={{ mt: 2 }}>
+					Submit
+				</Button>
+			</form>
+		</Container>
+	);
 }
 ```

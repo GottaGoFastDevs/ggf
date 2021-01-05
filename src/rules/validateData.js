@@ -1,9 +1,11 @@
 import { enforce } from 'vest';
 import supportedVestRules from './supportedVestRules';
+import { translate } from '../lang';
 
-function validateData(data, rules) {
+function validateData({ rules, data, labels }) {
 	console.log(data);
 	console.log(rules);
+	console.log(labels);
 
 	const errors = {};
 
@@ -11,14 +13,21 @@ function validateData(data, rules) {
 		if (!fieldRules) continue;
 
 		const fieldValue = data[fieldName];
-		let lastRuleName;
+		let lastRule;
 		try {
 			for (const [ ruleName, ruleValue ] of Object.entries(fieldRules)) {
-				lastRuleName = ruleName;
+				lastRule = {
+					ruleName,
+					ruleValue,
+					fieldName,
+					fieldValue,
+					fieldLabel: labels[ruleName]
+				};
 				enforce(fieldValue)[supportedVestRules[ruleName]](ruleValue);
 			}
 		} catch (e) {
-			errors[fieldName] = lastRuleName;
+			errors[fieldName] = translate(lastRule);
+			// errors[fieldName] = lastRule.ruleName;
 		}
 	}
 
