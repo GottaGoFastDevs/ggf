@@ -61,7 +61,7 @@ function Form() {
 <FirstName
 	label="First Name"
 	string
-	minLenght="10"
-	maxLenght="10"
+	minLength="10"
+	maxLength="10"
 />
 ```

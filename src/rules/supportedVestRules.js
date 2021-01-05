@@ -7,8 +7,8 @@ const supportedVestRules = {
 	max: 'lessThanOrEquals',
 	// String
 	string: 'isString',
-	minLenght: 'longerThanOrEquals',
-	maxLenght: 'shorterThanOrEquals'
+	minLength: 'longerThanOrEquals',
+	maxLength: 'shorterThanOrEquals'
 };
 
 export default supportedVestRules;

@@ -8,8 +8,8 @@ const errorMessages = {
 		max: 'La valeur doit être égale ou plus petite que {ruleValue}',
 		// String
 		string: 'Le champ {fieldLabel} doit correspondre à une chaîne de caractère',
-		minLenght: 'Le champ {fieldLabel} doit avoir au moins {ruleValue} caractères',
-		maxLenght: 'Le champ {fieldLabel} doit avoir au maximum {ruleValue} caractères'
+		minLength: 'Le champ {fieldLabel} doit avoir au moins {ruleValue} caractères',
+		maxLength: 'Le champ {fieldLabel} doit avoir au maximum {ruleValue} caractères'
 	}
 };
 
