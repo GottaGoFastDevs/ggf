@@ -42,3 +42,26 @@ function Form() {
 	);
 }
 ```
+### Rules
+```jsx
+// All types
+<Johyn
+	label="Johyn"
+	required
+	matches="[0-9]"
+/>
+// Numeric
+<Age 
+	label="Age"
+	numeric
+	min="10"
+	max="10"
+/>
+// String
+<FirstName
+	label="First Name"
+	string
+	minLenght="10"
+	maxLenght="10"
+/>
+```
