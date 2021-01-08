@@ -1,20 +1,8 @@
 import { Container, Typography, Button } from "@material-ui/core";
-import { useForm } from "@ggf/ggf";
-
-const numberFormat = (str) => {
-  let r = parseInt(str.replace(/[^\d]+/gi, ""), 10);
-  r = r ? r.toLocaleString("fr") : "";
-
-  return r;
-};
+import { Form, Field } from "@ggf/ggf";
 
 function App() {
-  const {
-    Fields: { Email, FirstName, LastName, Age },
-    handleSubmit,
-  } = useForm();
-
-  const onSubmit = ({ firstName, lastName }) => {
+  const handleSubmit = ({ firstName, lastName }) => {
     alert(`Hello ${firstName} ${lastName}!`);
   };
 
@@ -24,16 +12,16 @@ function App() {
         Update your profile
       </Typography>
 
-      <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Email label="Email" required />
-        <FirstName label="First Name" />
-        <LastName label="Last Name" />
-        <Age label="Age" numeric min="10" format={numberFormat} />
+      <Form onSubmit={handleSubmit}>
+        <Field name="email" label="Email" required />
+        <Field name="firstName" label="First Name" />
+        <Field name="lastName" label="Last Name" />
+        <Field name="age" label="Age" numeric min="10" />
 
         <Button type="submit" variant="contained" sx={{ mt: 2 }}>
           Submit
         </Button>
-      </form>
+      </Form>
     </Container>
   );
 }
